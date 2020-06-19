@@ -1,0 +1,24 @@
+{
+  "name": "jr/ooapigenerator",
+  "type": "project",
+  "description": "generate requests for onOffice API",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Janosch Reuschenbach",
+      "email": "j.reuschenbach@gmail.com"
+    }
+  ],
+  "require": {
+    "ext-json": "*",
+    "php": "^7.2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8"
+  },
+
+  "autoload": {
+    "psr-4": {"jr\\ooapigenerator\\": "src/"}
+  }
+}
