@@ -1,5 +1,5 @@
 {
-  "$id": "https://example.com/onOffice-api-json-schema.json",
+  "$id": "https://onoffice.com/onOffice-api-json-schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "onOffice API",
   "description": "json-schema for onOffice API (https://apidoc.onoffice.de)",
