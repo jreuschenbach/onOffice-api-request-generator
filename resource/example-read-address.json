@@ -1,0 +1,36 @@
+{
+  "token": "<Access-Token>",
+  "request": {
+    "actions": [
+      {
+        "actionid": "urn:onoffice-de-ns:smart:2.5:smartml:action:read",
+        "resourceid": "",
+        "identifier": "",
+        "resourcetype": "address",
+        "timestamp": "",
+        "hmac": "",
+        "parameters": {
+          "data": [
+            "Briefanrede",
+            "Vorname",
+            "Name",
+            "Land",
+            "Ort",
+            "Plz",
+            "Strasse"
+          ],
+          "filter": {
+            "Vorname": [
+              {
+                "op": "=",
+                "val": "Max"
+              }
+            ]
+          },
+          "sortby": "Strasse",
+          "sortorder": "DESC"
+        }
+      }
+    ]
+  }
+}

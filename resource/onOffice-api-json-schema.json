@@ -1,0 +1,53 @@
+{
+  "$id": "https://example.com/onOffice-api-json-schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "onOffice API",
+  "description": "json-schema for onOffice API (https://apidoc.onoffice.de)",
+  "type": "object",
+  "properties": {
+    "token": {"type":  "string"},
+    "request": {
+      "type": "object",
+      "properties": {
+        "actions": {
+          "type": "array",
+          "items":
+          {
+            "type": "object",
+            "properties": {
+              "actionid": {
+                "type": "string"
+              },
+              "resourceid": {
+                "type": "string"
+              },
+              "identifier": {
+                "type": "string"
+              },
+              "resourcetype": {
+                "type": "string"
+              }
+            },
+            "allOf": [{
+              "if": {
+                "properties": {"actionid": {
+                  "const": "urn:onoffice-de-ns:smart:2.5:smartml:action:read"}}
+              },
+              "then": {
+                "properties": {
+                  "parameters": {
+                    "type":  "object",
+                    "properties": {
+                      "data": {"type": "array"}
+                    }
+                  }
+                }
+              }
+            }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
