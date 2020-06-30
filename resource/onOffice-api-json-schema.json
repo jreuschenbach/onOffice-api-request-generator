@@ -49,5 +49,6 @@
         }
       }
     }
-  }
+  },
+  "required": ["token", "request"]
 }
