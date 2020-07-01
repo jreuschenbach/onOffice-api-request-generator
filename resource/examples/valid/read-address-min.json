@@ -1,0 +1,15 @@
+{
+  "token": "<Access-Token>",
+  "request": {
+    "actions": [
+      {
+        "actionid": "urn:onoffice-de-ns:smart:2.5:smartml:action:read",
+        "resourceid": "",
+        "identifier": "",
+        "resourcetype": "address",
+        "timestamp": 123,
+        "hmac": ""
+      }
+    ]
+  }
+}
