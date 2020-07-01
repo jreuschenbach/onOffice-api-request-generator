@@ -99,9 +99,11 @@
             ]
           }
         }
-      }
+      },
+      "additionalProperties": false
     }
   },
+  "additionalProperties": false,
   "required": [
     "token",
     "request"
