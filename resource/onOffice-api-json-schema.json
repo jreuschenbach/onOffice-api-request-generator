@@ -68,6 +68,27 @@
                         },
                         "filter": {
                           "type": "object"
+                        },
+                        "listlimit": {
+                          "type": "integer"
+                        },
+                        "listoffset": {
+                          "type": "integer"
+                        },
+                        "sortby": {
+                          "type": "string"
+                        },
+                        "sortorder": {
+                          "type": "string",
+                          "enum": ["ASC", "DESC"]
+                        },
+                        "formatoutput": {
+                          "type": "boolean"
+                        },
+                        "outputlanguage": {
+                          "type": "string",
+                          "minLength": 3,
+                          "maxLength": 3
                         }
                       },
                       "additionalProperties": false

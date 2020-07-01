@@ -28,7 +28,13 @@
                 "val": "Max"
               }
             ]
-          }
+          },
+          "listlimit": 100,
+          "listoffset": 100,
+          "sortby": "Name",
+          "sortorder": "ASC",
+          "formatoutput": true,
+          "outputlanguage": "ENG"
         }
       }
     ]
