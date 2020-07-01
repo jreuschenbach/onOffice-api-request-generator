@@ -8,7 +8,7 @@
         "identifier": "",
         "resourcetype": "address",
         "timestamp": 123,
-        "hmac": "",
+        "hmac": "e8224ceea25f343ca1e9fec3f85b32f0",
         "parameters": {
           "data": [
             "Briefanrede",

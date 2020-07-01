@@ -8,28 +8,7 @@
         "identifier": "",
         "resourcetype": "address",
         "timestamp": "123",
-        "hmac": "",
-        "parameters": {
-          "data": [
-            "Briefanrede",
-            "Vorname",
-            "Name",
-            "Land",
-            "Ort",
-            "Plz",
-            "Strasse"
-          ],
-          "filter": {
-            "Vorname": [
-              {
-                "op": "=",
-                "val": "Max"
-              }
-            ]
-          },
-          "sortby": "Strasse",
-          "sortorder": "DESC"
-        }
+        "hmac": "e8224ceea25f343ca1e9fec3f85b32f0"
       }
     ]
   }
