@@ -5,18 +5,23 @@
   "description": "json-schema for onOffice API (https://apidoc.onoffice.de)",
   "type": "object",
   "properties": {
-    "token": {"type":  "string"},
+    "token": {
+      "type": "string"
+    },
     "request": {
       "type": "object",
       "properties": {
         "actions": {
           "type": "array",
-          "items":
-          {
+          "items": {
             "type": "object",
             "properties": {
               "actionid": {
-                "type": "string"
+                "type": "string",
+                "enum":
+                [
+                  "urn:onoffice-de-ns:smart:2.5:smartml:action:read"
+                ]
               },
               "resourceid": {
                 "type": "string"
@@ -28,27 +33,36 @@
                 "type": "string"
               }
             },
-            "allOf": [{
-              "if": {
-                "properties": {"actionid": {
-                  "const": "urn:onoffice-de-ns:smart:2.5:smartml:action:read"}}
-              },
-              "then": {
-                "properties": {
-                  "parameters": {
-                    "type":  "object",
-                    "properties": {
-                      "data": {"type": "array"}
+            "oneOf": [
+              {
+                "if": {
+                  "properties": {
+                    "actionid": {
+                      "const": "urn:onoffice-de-ns:smart:2.5:smartml:action:read"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "parameters": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array"
+                        }
+                      }
                     }
                   }
                 }
               }
-            }
             ]
           }
         }
       }
     }
   },
-  "required": ["token", "request"]
+  "required": [
+    "token",
+    "request"
+  ]
 }

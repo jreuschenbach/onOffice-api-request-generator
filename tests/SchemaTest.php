@@ -9,16 +9,36 @@ class SchemaTest extends TestCase
     {
         $schema = Opis\JsonSchema\Schema::fromJsonString(file_get_contents(__DIR__ . '/../resource/onOffice-api-json-schema.json'));
         $validator = new \Opis\JsonSchema\Validator();
-        $validationResult = $validator->schemaValidation(json_decode(file_get_contents(__DIR__ . '/../resource/example-read-address.json')), $schema);
-        $this->assertFalse($validationResult->hasErrors(), $this->extractErrorInfos($validationResult));
+
+        $pathValid = __DIR__.'/../resource/examples/valid/';
+        $dirHandle = opendir($pathValid);
+
+        while (false !== ($exampleFile = readdir($dirHandle)))
+        {
+            if (is_file($pathValid.$exampleFile))
+            {
+                $validationResult = $validator->schemaValidation(json_decode(file_get_contents($pathValid.$exampleFile)), $schema);
+                $this->assertFalse($validationResult->hasErrors(), $this->extractErrorInfos($validationResult));
+            }
+        }
     }
 
     public function testInvalid(): void
     {
-        $schema = \Opis\JsonSchema\Schema::fromJsonString(file_get_contents(__DIR__.'/../resource/onOffice-api-json-schema.json'));
+        $schema = Opis\JsonSchema\Schema::fromJsonString(file_get_contents(__DIR__ . '/../resource/onOffice-api-json-schema.json'));
         $validator = new \Opis\JsonSchema\Validator();
-        $validationResult = $validator->schemaValidation(json_decode(file_get_contents(__DIR__.'/../resource/example-invalid-only-action.json')), $schema);
-        $this->assertTrue($validationResult->hasErrors());
+
+        $pathInvalid = __DIR__.'/../resource/examples/invalid/';
+        $dirHandle = opendir($pathInvalid);
+
+        while (false !== ($exampleFile = readdir($dirHandle)))
+        {
+            if (is_file($pathInvalid.$exampleFile))
+            {
+                $validationResult = $validator->schemaValidation(json_decode(file_get_contents($pathInvalid.$exampleFile)), $schema);
+                $this->assertTrue($validationResult->hasErrors());
+            }
+        }
     }
 
     private function extractErrorInfos(\Opis\JsonSchema\ValidationResult $validationResult): string
