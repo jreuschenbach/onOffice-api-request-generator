@@ -31,8 +31,15 @@
               },
               "resourcetype": {
                 "type": "string"
+              },
+              "hmac": {
+                "type": "string"
+              },
+              "timestamp": {
+                "type": "integer"
               }
             },
+            "required": ["hmac", "timestamp", "actionid"],
             "oneOf": [
               {
                 "if": {

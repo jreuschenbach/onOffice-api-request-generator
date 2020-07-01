@@ -18,7 +18,7 @@ class SchemaTest extends TestCase
             if (is_file($pathValid.$exampleFile))
             {
                 $validationResult = $validator->schemaValidation(json_decode(file_get_contents($pathValid.$exampleFile)), $schema);
-                $this->assertFalse($validationResult->hasErrors(), $this->extractErrorInfos($validationResult));
+                $this->assertFalse($validationResult->hasErrors(), $exampleFile.': '.$this->extractErrorInfos($validationResult));
             }
         }
     }
@@ -36,7 +36,7 @@ class SchemaTest extends TestCase
             if (is_file($pathInvalid.$exampleFile))
             {
                 $validationResult = $validator->schemaValidation(json_decode(file_get_contents($pathInvalid.$exampleFile)), $schema);
-                $this->assertTrue($validationResult->hasErrors());
+                $this->assertTrue($validationResult->hasErrors(), $exampleFile);
             }
         }
     }
