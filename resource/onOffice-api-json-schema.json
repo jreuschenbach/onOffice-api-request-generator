@@ -58,8 +58,19 @@
                       "properties": {
                         "data": {
                           "type": "array"
+                        },
+                        "recordids": {
+                          "type": "array",
+                          "items": {"type":  "integer"}
+                        },
+                        "filterid": {
+                          "type": "integer"
+                        },
+                        "filter": {
+                          "type": "object"
                         }
-                      }
+                      },
+                      "additionalProperties": false
                     }
                   }
                 }

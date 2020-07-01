@@ -19,6 +19,8 @@
             "Plz",
             "Strasse"
           ],
+          "recordids": [1, 2, 3],
+          "filterid": 5,
           "filter": {
             "Vorname": [
               {
@@ -26,9 +28,7 @@
                 "val": "Max"
               }
             ]
-          },
-          "sortby": "Strasse",
-          "sortorder": "DESC"
+          }
         }
       }
     ]
