@@ -7,7 +7,11 @@
         "resourceid": "",
         "identifier": "",
         "resourcetype": "address",
-        "timestamp": 123
+        "timestamp": 123,
+        "hmac": "e8224ceea25f343ca1e9fec3f85b32f0",
+        "parameters": {
+          "recordids": ["1", "2", "3"]
+        }
       }
     ]
   }

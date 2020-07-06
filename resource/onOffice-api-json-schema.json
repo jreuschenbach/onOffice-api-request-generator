@@ -3,6 +3,20 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "onOffice API",
   "description": "json-schema for onOffice API (https://apidoc.onoffice.de)",
+
+  "definitions": {
+
+      "hmac": {
+        "type": "string",
+        "maxLength": 32,
+        "minLength": 32
+      },
+      "timestamp": {
+        "type": "integer"
+      }
+
+  },
+
   "type": "object",
   "properties": {
     "token": {
@@ -15,44 +29,28 @@
           "type": "array",
           "items": {
             "type": "object",
-            "properties": {
-              "actionid": {
-                "type": "string",
-                "enum":
-                [
-                  "urn:onoffice-de-ns:smart:2.5:smartml:action:read"
-                ]
-              },
-              "resourceid": {
-                "type": "string"
-              },
-              "identifier": {
-                "type": "string"
-              },
-              "resourcetype": {
-                "type": "string"
-              },
-              "hmac": {
-                "type": "string",
-                "maxLength": 32,
-                "minLength": 32
-              },
-              "timestamp": {
-                "type": "integer"
-              }
-            },
-            "required": ["hmac", "timestamp", "actionid"],
             "oneOf": [
               {
-                "if": {
                   "properties": {
+                    "resourceid": {
+                      "type": "string"
+                    },
+                    "identifier": {
+                      "type": "string"
+                    },
+                    "hmac": {
+                      "$ref": "#/definitions/hmac"
+                    },
+                    "timestamp": {
+                      "$ref": "#/definitions/timestamp"
+                    },
+
                     "actionid": {
                       "const": "urn:onoffice-de-ns:smart:2.5:smartml:action:read"
-                    }
-                  }
-                },
-                "then": {
-                  "properties": {
+                    },
+                    "resourcetype": {
+                      "const": "address"
+                    },
                     "parameters": {
                       "type": "object",
                       "properties": {
@@ -61,7 +59,9 @@
                         },
                         "recordids": {
                           "type": "array",
-                          "items": {"type":  "integer"}
+                          "items": {
+                            "type": "integer"
+                          }
                         },
                         "filterid": {
                           "type": "integer"
@@ -80,7 +80,10 @@
                         },
                         "sortorder": {
                           "type": "string",
-                          "enum": ["ASC", "DESC"]
+                          "enum": [
+                            "ASC",
+                            "DESC"
+                          ]
                         },
                         "formatoutput": {
                           "type": "boolean"
@@ -93,8 +96,45 @@
                       },
                       "additionalProperties": false
                     }
+                  },
+                "required": ["hmac", "timestamp", "actionid"],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "resourceid": {
+                    "type": "string"
+                  },
+                  "identifier": {
+                    "type": "string"
+                  },
+                  "hmac": {
+                    "$ref": "#/definitions/hmac"
+                  },
+                  "timestamp": {
+                    "$ref": "#/definitions/timestamp"
+                  },
+                  "actionid": {
+                    "const": "urn:onoffice-de-ns:smart:2.5:smartml:action:read"
+                  },
+                  "resourcetype": {
+                    "const": "agentslog"
+                  },
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array"
+                      }
+                    }
                   }
-                }
+                },
+
+                "required": [
+                  "hmac",
+                  "timestamp"
+                ],
+                "additionalProperties": false
               }
             ]
           }

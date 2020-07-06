@@ -1,5 +1,5 @@
 {
-  "token": "<Access-Token>",
+  "token": "token",
   "request": {
     "actions": [
       {

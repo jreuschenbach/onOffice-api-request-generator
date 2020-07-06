@@ -52,6 +52,11 @@ class SchemaTest extends TestCase
 
             foreach ($validationError->keywordArgs() as $key => $value)
             {
+                if (is_array($value))
+                {
+                    $value = implode(', ', $value);
+                }
+
                 $keywordArgs [] = $key . ' = ' . $value;
             }
 
