@@ -10,12 +10,7 @@
         "timestamp": 123,
         "hmac": "e8224ceea25f343ca1e9fec3f85b32f0",
         "parameters": {
-          "data": ["Adress_nr", "Objekt_nr", "Aktionsart", "Aktionstyp", "Datum", "created", "Benutzer", "Benutzer_nr", "Datum_bearb", "Kosten", "Bemerkung", "merkmal"],
-          "estateid": 100,
-          "adressid": 100,
-          "listlimit": 400,
-          "fullmail": true,
-          "tracking": true
+          "listlimit": 600
         }
       }
     ]

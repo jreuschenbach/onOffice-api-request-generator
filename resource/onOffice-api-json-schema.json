@@ -124,9 +124,32 @@
                     "type": "object",
                     "properties": {
                       "data": {
-                        "type": "array"
-                      }
-                    }
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "Objekt_nr",
+                            "Adress_nr",
+                            "Aktionsart",
+                            "Aktionstyp",
+                            "Datum",
+                            "created",
+                            "Benutzer",
+                            "Benutzer_nr",
+                            "Datum_bearb",
+                            "Kosten",
+                            "Bemerkung",
+                            "merkmal"
+                          ]
+                        }
+                      },
+                      "estateid": {"type":  "integer"},
+                      "adressid": {"type":  "integer"},
+                      "listlimit": {"type":  "integer", "maximum": 500},
+                      "fullmail": {"type":  "boolean"},
+                      "tracking": {"type":  "boolean"}
+                    },
+                    "additionalProperties": false
                   }
                 },
 
