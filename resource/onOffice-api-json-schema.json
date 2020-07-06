@@ -179,6 +179,19 @@
                   },
                   "resourcetype": {
                     "const": "calendar"
+                  },
+
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "datestart": {"type":  "string"},
+                      "dateend": {"type":  "string"},
+                      "showcancelled": {"type":  "boolean"},
+                      "users": {"type":  "array", "items":  {"type":  "integer"}},
+                      "groups": {"type":  "array", "items":  {"type":  "integer"}},
+                      "allusers": {"type":  "boolean"}
+                    },
+                    "additionalProperties": false
                   }
                 },
                 "required": ["hmac", "timestamp", "actionid"],
