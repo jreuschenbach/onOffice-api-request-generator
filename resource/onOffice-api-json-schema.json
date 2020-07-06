@@ -158,6 +158,31 @@
                   "timestamp"
                 ],
                 "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "resourceid": {
+                    "type": "string"
+                  },
+                  "identifier": {
+                    "type": "string"
+                  },
+                  "hmac": {
+                    "$ref": "#/definitions/hmac"
+                  },
+                  "timestamp": {
+                    "$ref": "#/definitions/timestamp"
+                  },
+
+                  "actionid": {
+                    "const": "urn:onoffice-de-ns:smart:2.5:smartml:action:read"
+                  },
+                  "resourcetype": {
+                    "const": "calendar"
+                  }
+                },
+                "required": ["hmac", "timestamp", "actionid"],
+                "additionalProperties": false
               }
             ]
           }
