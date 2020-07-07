@@ -11,10 +11,100 @@
         "maxLength": 32,
         "minLength": 32
       },
+
       "timestamp": {
         "type": "integer"
-      }
+      },
 
+      "parameters-read-address": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array"
+          },
+          "recordids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "filterid": {
+            "type": "integer"
+          },
+          "filter": {
+            "type": "object"
+          },
+          "listlimit": {
+            "type": "integer"
+          },
+          "listoffset": {
+            "type": "integer"
+          },
+          "sortby": {
+            "type": "string"
+          },
+          "sortorder": {
+            "type": "string",
+            "enum": [
+              "ASC",
+              "DESC"
+            ]
+          },
+          "formatoutput": {
+            "type": "boolean"
+          },
+          "outputlanguage": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 3
+          }
+        },
+        "additionalProperties": false
+      },
+
+    "parameters-read-agentslog": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Objekt_nr",
+              "Adress_nr",
+              "Aktionsart",
+              "Aktionstyp",
+              "Datum",
+              "created",
+              "Benutzer",
+              "Benutzer_nr",
+              "Datum_bearb",
+              "Kosten",
+              "Bemerkung",
+              "merkmal"
+            ]
+          }
+        },
+        "estateid": {"type":  "integer"},
+        "adressid": {"type":  "integer"},
+        "listlimit": {"type":  "integer", "maximum": 500},
+        "fullmail": {"type":  "boolean"},
+        "tracking": {"type":  "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "parameters-read-calendar": {
+      "type": "object",
+      "properties": {
+        "datestart": {"type":  "string"},
+        "dateend": {"type":  "string"},
+        "showcancelled": {"type":  "boolean"},
+        "users": {"type":  "array", "items":  {"type":  "integer"}},
+        "groups": {"type":  "array", "items":  {"type":  "integer"}},
+        "allusers": {"type":  "boolean"}
+      },
+      "additionalProperties": false
+    }
   },
 
   "type": "object",
@@ -52,49 +142,7 @@
                       "const": "address"
                     },
                     "parameters": {
-                      "type": "object",
-                      "properties": {
-                        "data": {
-                          "type": "array"
-                        },
-                        "recordids": {
-                          "type": "array",
-                          "items": {
-                            "type": "integer"
-                          }
-                        },
-                        "filterid": {
-                          "type": "integer"
-                        },
-                        "filter": {
-                          "type": "object"
-                        },
-                        "listlimit": {
-                          "type": "integer"
-                        },
-                        "listoffset": {
-                          "type": "integer"
-                        },
-                        "sortby": {
-                          "type": "string"
-                        },
-                        "sortorder": {
-                          "type": "string",
-                          "enum": [
-                            "ASC",
-                            "DESC"
-                          ]
-                        },
-                        "formatoutput": {
-                          "type": "boolean"
-                        },
-                        "outputlanguage": {
-                          "type": "string",
-                          "minLength": 3,
-                          "maxLength": 3
-                        }
-                      },
-                      "additionalProperties": false
+                      "$ref": "#/definitions/parameters-read-address"
                     }
                   },
                 "required": ["hmac", "timestamp", "actionid"],
@@ -121,35 +169,7 @@
                     "const": "agentslog"
                   },
                   "parameters": {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "array",
-                        "items": {
-                          "type": "string",
-                          "enum": [
-                            "Objekt_nr",
-                            "Adress_nr",
-                            "Aktionsart",
-                            "Aktionstyp",
-                            "Datum",
-                            "created",
-                            "Benutzer",
-                            "Benutzer_nr",
-                            "Datum_bearb",
-                            "Kosten",
-                            "Bemerkung",
-                            "merkmal"
-                          ]
-                        }
-                      },
-                      "estateid": {"type":  "integer"},
-                      "adressid": {"type":  "integer"},
-                      "listlimit": {"type":  "integer", "maximum": 500},
-                      "fullmail": {"type":  "boolean"},
-                      "tracking": {"type":  "boolean"}
-                    },
-                    "additionalProperties": false
+                    "$ref": "#/definitions/parameters-read-agentslog"
                   }
                 },
 
@@ -182,16 +202,7 @@
                   },
 
                   "parameters": {
-                    "type": "object",
-                    "properties": {
-                      "datestart": {"type":  "string"},
-                      "dateend": {"type":  "string"},
-                      "showcancelled": {"type":  "boolean"},
-                      "users": {"type":  "array", "items":  {"type":  "integer"}},
-                      "groups": {"type":  "array", "items":  {"type":  "integer"}},
-                      "allusers": {"type":  "boolean"}
-                    },
-                    "additionalProperties": false
+                    "$ref": "#/definitions/parameters-read-calendar"
                   }
                 },
                 "required": ["hmac", "timestamp", "actionid"],
