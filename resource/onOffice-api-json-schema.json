@@ -3,65 +3,76 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "onOffice API",
   "description": "json-schema for onOffice API (https://apidoc.onoffice.de)",
-
   "definitions": {
+    "hmac": {
+      "type": "string",
+      "maxLength": 32,
+      "minLength": 32
+    },
+    "timestamp": {
+      "type": "integer"
+    },
+    "language": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 3
+    },
+    "country": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 3
+    },
+    "listlimit": {
+      "type": "integer",
+      "maximum": 500
+    },
+    "sortorder": {
+      "type": "string",
+      "enum": [
+        "ASC",
+        "DESC"
+      ]
+    },
 
-      "hmac": {
-        "type": "string",
-        "maxLength": 32,
-        "minLength": 32
-      },
-
-      "timestamp": {
-        "type": "integer"
-      },
-
-      "parameters-read-address": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array"
-          },
-          "recordids": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "filterid": {
+    "parameters-read-address": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array"
+        },
+        "recordids": {
+          "type": "array",
+          "items": {
             "type": "integer"
-          },
-          "filter": {
-            "type": "object"
-          },
-          "listlimit": {
-            "type": "integer"
-          },
-          "listoffset": {
-            "type": "integer"
-          },
-          "sortby": {
-            "type": "string"
-          },
-          "sortorder": {
-            "type": "string",
-            "enum": [
-              "ASC",
-              "DESC"
-            ]
-          },
-          "formatoutput": {
-            "type": "boolean"
-          },
-          "outputlanguage": {
-            "type": "string",
-            "minLength": 3,
-            "maxLength": 3
           }
         },
-        "additionalProperties": false
+        "filterid": {
+          "type": "integer"
+        },
+        "filter": {
+          "type": "object"
+        },
+        "listlimit": {
+          "type": "integer"
+        },
+        "listoffset": {
+          "type": "integer"
+        },
+        "sortby": {
+          "type": "string"
+        },
+        "sortorder": {
+          "$ref": "#/definitions/sortorder"
+        },
+        "formatoutput": {
+          "type": "boolean"
+        },
+        "outputlanguage": {
+          "$ref": "#/definitions/language"
+        }
       },
-
+      "additionalProperties": false
+    },
     "parameters-read-agentslog": {
       "type": "object",
       "properties": {
@@ -85,28 +96,124 @@
             ]
           }
         },
-        "estateid": {"type":  "integer"},
-        "adressid": {"type":  "integer"},
-        "listlimit": {"type":  "integer", "maximum": 500},
-        "fullmail": {"type":  "boolean"},
-        "tracking": {"type":  "boolean"}
+        "estateid": {
+          "type": "integer"
+        },
+        "adressid": {
+          "type": "integer"
+        },
+        "listlimit": {
+          "$ref": "#/definitions/listlimit"
+        },
+        "fullmail": {
+          "type": "boolean"
+        },
+        "tracking": {
+          "type": "boolean"
+        }
       },
       "additionalProperties": false
     },
     "parameters-read-calendar": {
       "type": "object",
       "properties": {
-        "datestart": {"type":  "string"},
-        "dateend": {"type":  "string"},
-        "showcancelled": {"type":  "boolean"},
-        "users": {"type":  "array", "items":  {"type":  "integer"}},
-        "groups": {"type":  "array", "items":  {"type":  "integer"}},
-        "allusers": {"type":  "boolean"}
+        "datestart": {
+          "type": "string"
+        },
+        "dateend": {
+          "type": "string"
+        },
+        "showcancelled": {
+          "type": "boolean"
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "allusers": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "parameters-read-estate": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "filterid": {
+          "type": "integer"
+        },
+        "filter": {
+          "type": "string"
+        },
+        "listlimit": {
+          "$ref": "#/definitions/listlimit"
+        },
+        "listoffset": {
+          "type": "integer"
+        },
+        "sortby": {
+          "oneof": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "sortorder": {
+          "$ref": "#/definitions/sortorder"
+        },
+        "formatoutput": {"type":  "boolean"},
+        "estatelanguage": {"$ref":  "#/definitions/language"},
+        "outputlanguage": {"$ref":  "#/definitions/language"},
+        "addestatelanguage": {"type":  "boolean"},
+        "georangesearch": {
+          "oneof": [
+            {
+              "type": "object",
+              "properties": {
+                "country": {
+                  "$ref": "#/definitions/country"
+                },
+                "zip": {
+                  "type": "integer"
+                },
+                "radius": {
+                  "type": "integer"
+                }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "latitude": {"type":  "integer"},
+                "longitude": {"type":  "integer"},
+                "radius": {"type":  "integer"}
+              },
+              "additionalproperties": false
+            }
+          ]
+        }
       },
       "additionalProperties": false
     }
   },
-
   "type": "object",
   "properties": {
     "token": {
@@ -121,31 +228,34 @@
             "type": "object",
             "oneOf": [
               {
-                  "properties": {
-                    "resourceid": {
-                      "type": "string"
-                    },
-                    "identifier": {
-                      "type": "string"
-                    },
-                    "hmac": {
-                      "$ref": "#/definitions/hmac"
-                    },
-                    "timestamp": {
-                      "$ref": "#/definitions/timestamp"
-                    },
-
-                    "actionid": {
-                      "const": "urn:onoffice-de-ns:smart:2.5:smartml:action:read"
-                    },
-                    "resourcetype": {
-                      "const": "address"
-                    },
-                    "parameters": {
-                      "$ref": "#/definitions/parameters-read-address"
-                    }
+                "properties": {
+                  "resourceid": {
+                    "type": "string"
                   },
-                "required": ["hmac", "timestamp", "actionid"],
+                  "identifier": {
+                    "type": "string"
+                  },
+                  "hmac": {
+                    "$ref": "#/definitions/hmac"
+                  },
+                  "timestamp": {
+                    "$ref": "#/definitions/timestamp"
+                  },
+                  "actionid": {
+                    "const": "urn:onoffice-de-ns:smart:2.5:smartml:action:read"
+                  },
+                  "resourcetype": {
+                    "const": "address"
+                  },
+                  "parameters": {
+                    "$ref": "#/definitions/parameters-read-address"
+                  }
+                },
+                "required": [
+                  "hmac",
+                  "timestamp",
+                  "actionid"
+                ],
                 "additionalProperties": false
               },
               {
@@ -172,7 +282,6 @@
                     "$ref": "#/definitions/parameters-read-agentslog"
                   }
                 },
-
                 "required": [
                   "hmac",
                   "timestamp"
@@ -193,19 +302,52 @@
                   "timestamp": {
                     "$ref": "#/definitions/timestamp"
                   },
-
                   "actionid": {
                     "const": "urn:onoffice-de-ns:smart:2.5:smartml:action:read"
                   },
                   "resourcetype": {
                     "const": "calendar"
                   },
-
                   "parameters": {
                     "$ref": "#/definitions/parameters-read-calendar"
                   }
                 },
-                "required": ["hmac", "timestamp", "actionid"],
+                "required": [
+                  "hmac",
+                  "timestamp",
+                  "actionid"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "properties": {
+                  "resourceid": {
+                    "type": "string"
+                  },
+                  "identifier": {
+                    "type": "string"
+                  },
+                  "hmac": {
+                    "$ref": "#/definitions/hmac"
+                  },
+                  "timestamp": {
+                    "$ref": "#/definitions/timestamp"
+                  },
+                  "actionid": {
+                    "const": "urn:onoffice-de-ns:smart:2.5:smartml:action:read"
+                  },
+                  "resourcetype": {
+                    "const": "estate"
+                  },
+                  "parameters": {
+                    "$ref": "#/definitions/parameters-read-estate"
+                  }
+                },
+                "required": [
+                  "hmac",
+                  "timestamp",
+                  "actionid"
+                ],
                 "additionalProperties": false
               }
             ]
